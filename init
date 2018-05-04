@@ -22,12 +22,6 @@ if [ -n "$1" ]
 	cp "$DIR"/easy_esp "$DIR"/bin/easy_esp
 	export PATH="$DIR"/bin
 	easy_esp add_config PORT "$1"
-	# printf "sudo mpfshell -c open \""$2"\"" > connect.sh
-	# chmod +x connect.sh
-	# make_cu_wifi_file
-	# mpfshell -c "open $2; mput .*\.py; mget .*\.py;"
-		# make_boot_file
-
 
 else
 	echo 'usage: sh init <esp32_PORT>'
