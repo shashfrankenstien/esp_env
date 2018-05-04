@@ -1,0 +1,32 @@
+#!/usr/bin/env python
+from sys import argv
+import os
+import scripts
+
+EASY_ESP = os.path.basename(__file__)
+
+def leave(usage):
+	print("usage: {}".format(usage))
+	exit()
+
+
+# def safe_import(module)
+
+
+if len(argv)==1:
+	leave(usage="{} <SRCIPT> <SCRIPT-OPTIONS>".format(EASY_ESP))
+
+script = argv[1]
+options = argv[2:]
+
+if script=="add_config":
+	if len(options)!=2:
+		leave(usage="add_config <KEY> <VALUE>")
+	# from .script import write_config
+	scripts.write_config(options[0], options[1])
+
+elif script=='connect':
+	if len(options)==1:
+		scripts.write_config('PORT', options[0])
+	# from .script import connect
+	scripts.connect()

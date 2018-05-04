@@ -1,0 +1,34 @@
+#!bin/sh
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+# echo "$DIR"
+
+if [ -n "$1" ]
+	then
+
+
+	echo "PORT $1"
+	
+	pip install -U virtualenv
+	virtualenv "$DIR"
+	source "$DIR/bin/activate"
+
+	which python
+	python -m pip install mpfshell esptool
+
+	mkdir "$DIR"/bin/scripts
+	cp -R "$DIR"/scripts "$DIR"/bin/
+	chmod +x "$DIR"/easy_esp
+	cp "$DIR"/easy_esp "$DIR"/bin/easy_esp
+	export PATH="$DIR"/bin
+	easy_esp add_config PORT "$1"
+	# printf "sudo mpfshell -c open \""$2"\"" > connect.sh
+	# chmod +x connect.sh
+	# make_cu_wifi_file
+	# mpfshell -c "open $2; mput .*\.py; mget .*\.py;"
+		# make_boot_file
+
+
+else
+	echo 'usage: sh init <esp32_PORT>'
+fi
